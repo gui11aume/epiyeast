@@ -1,0 +1,148 @@
+2016-09-29 21:48:15 Preprocessing summary
+Reads lost:	10044402 (13.70 %)
+Aberrant reads:	2813873 (3.00 %)
+Reads per sample:
+1t0	2765406
+1t1	13539922
+1t14	11828413
+2t0	12719598
+2t1	15784075
+2t14	6657539
+Demultiplexing failures:
+0/0:	42953
+0/19:	142440
+0/20:	559398
+0/21:	137807
+0/22:	466474
+23/0:	382420
+23/20:	944472
+23/21:	289382
+24/0:	208459
+24/19:	114018
+24/21:	307371
+24/22:	168376
+25/0:	242804
+25/19:	113615
+25/20:	1397865
+25/22:	455004
+26/0:	542739
+26/19:	232327
+26/21:	482605
+Spikes:
+1t0:
+  spike1:	110
+  spike2:	962
+  spike3:	24
+  spike4:	49
+  spike5:	100
+  spike6:	97
+1t1:
+  spike1:	419
+  spike2:	5780
+  spike3:	558
+  spike4:	760
+  spike5:	1032
+  spike6:	1324
+1t14:
+  spike1:	1064
+  spike2:	26243
+  spike3:	824
+  spike4:	965
+  spike5:	1331
+  spike6:	1556
+2t0:
+  spike1:	383
+  spike2:	3380
+  spike3:	168
+  spike4:	207
+  spike5:	282
+  spike6:	321
+2t1:
+  spike1:	672
+  spike2:	27820
+  spike3:	501
+  spike4:	741
+  spike5:	856
+  spike6:	1019
+2t14:
+  spike1:	802
+  spike2:	2769
+  spike3:	426
+  spike4:	819
+  spike5:	963
+  spike6:	1186
+---
+2016-09-29 23:01:44 Preprocessing summary
+Reads lost:	7003020 (9.35 %)
+Aberrant reads:	2228327 (2.00 %)
+Reads per sample:
+1t0	2553909
+1t1	12377189
+1t14	17629810
+2t0	10376049
+2t1	19421064
+2t14	5527394
+Demultiplexing failures:
+0/0:	28871
+0/19:	140114
+0/20:	436541
+0/21:	178649
+0/22:	376471
+23/0:	266408
+23/20:	515035
+23/21:	214493
+24/0:	147738
+24/19:	78031
+24/21:	284277
+24/22:	89564
+25/0:	195137
+25/19:	66615
+25/20:	548251
+25/22:	210646
+26/0:	451352
+26/19:	178506
+26/21:	367994
+Spikes:
+1t0:
+  spike1:	200
+  spike2:	1291
+  spike3:	28
+  spike4:	46
+  spike5:	68
+  spike6:	62
+1t1:
+  spike1:	2388
+  spike2:	3878
+  spike3:	392
+  spike4:	590
+  spike5:	766
+  spike6:	927
+1t14:
+  spike1:	1428
+  spike2:	6568
+  spike3:	1400
+  spike4:	1807
+  spike5:	2368
+  spike6:	2815
+2t0:
+  spike1:	262
+  spike2:	3727
+  spike3:	94
+  spike4:	119
+  spike5:	198
+  spike6:	220
+2t1:
+  spike1:	1408
+  spike2:	40716
+  spike3:	588
+  spike4:	938
+  spike5:	1181
+  spike6:	1373
+2t14:
+  spike1:	1974
+  spike2:	2651
+  spike3:	341
+  spike4:	559
+  spike5:	681
+  spike6:	858
+---

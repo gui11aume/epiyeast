@@ -1,0 +1,320 @@
+2016-09-30 11:41:49 Preprocessing summary
+Reads lost:	8312765 (9.97 %)
+Aberrant reads:	2143048 (2.00 %)
+Reads per sample:
+1t0	17064669
+1t1	3168408
+1t14	19246659
+2t0	16307289
+2t1	3787495
+2t14	15502281
+Demultiplexing failures:
+0/0:	23009
+0/39:	285924
+0/40:	45453
+0/41:	115264
+0/42:	423585
+35/0:	649550
+35/40:	204270
+35/41:	711670
+36/0:	108485
+36/39:	230295
+36/41:	300721
+36/42:	289373
+37/0:	231382
+37/39:	225805
+37/40:	186214
+37/42:	466579
+38/0:	529108
+38/39:	491389
+38/41:	651641
+Spikes:
+1t0:
+  spike1:	114
+  spike2:	6902
+  spike3:	1027
+  spike4:	322
+  spike5:	537
+  spike6:	780
+  spike7:	853
+1t1:
+  spike1:	54
+  spike2:	227
+  spike3:	536
+  spike4:	60
+  spike5:	60
+  spike6:	162
+  spike7:	157
+1t14:
+  spike1:	134
+  spike2:	739
+  spike3:	911
+  spike4:	333
+  spike5:	394
+  spike6:	812
+  spike7:	764
+2t0:
+  spike1:	62
+  spike2:	310
+  spike3:	279
+  spike4:	121
+  spike5:	214
+  spike6:	266
+  spike7:	334
+2t1:
+  spike1:	31
+  spike2:	198
+  spike3:	190
+  spike4:	60
+  spike5:	61
+  spike6:	150
+  spike7:	156
+2t14:
+  spike1:	162
+  spike2:	1695
+  spike3:	1300
+  spike4:	356
+  spike5:	423
+  spike6:	953
+  spike7:	829
+---
+2016-09-30 13:21:42 Preprocessing summary
+Reads lost:	8341688 (9.34 %)
+Aberrant reads:	2095844 (2.00 %)
+Reads per sample:
+1t0	17038774
+1t1	5319464
+1t14	17648301
+2t0	18697498
+2t1	8479607
+2t14	13780307
+Demultiplexing failures:
+0/0:	22848
+0/39:	367394
+0/40:	79797
+0/41:	99867
+0/42:	433767
+35/0:	562539
+35/40:	293776
+35/41:	578211
+36/0:	112456
+36/39:	243674
+36/41:	269504
+36/42:	272051
+37/0:	177447
+37/39:	191344
+37/40:	280944
+37/42:	380836
+38/0:	586989
+38/39:	586368
+38/41:	706032
+Spikes:
+1t0:
+  spike1:	106
+  spike2:	1935
+  spike3:	808
+  spike4:	240
+  spike5:	396
+  spike6:	568
+  spike7:	622
+1t1:
+  spike1:	49
+  spike2:	157
+  spike3:	380
+  spike4:	89
+  spike5:	90
+  spike6:	229
+  spike7:	227
+1t14:
+  spike1:	103
+  spike2:	269
+  spike3:	627
+  spike4:	267
+  spike5:	357
+  spike6:	664
+  spike7:	715
+2t0:
+  spike1:	71
+  spike2:	340
+  spike3:	316
+  spike4:	150
+  spike5:	256
+  spike6:	290
+  spike7:	426
+2t1:
+  spike1:	56
+  spike2:	226
+  spike3:	514
+  spike4:	111
+  spike5:	126
+  spike6:	299
+  spike7:	390
+2t14:
+  spike1:	114
+  spike2:	1454
+  spike3:	590
+  spike4:	234
+  spike5:	237
+  spike6:	542
+  spike7:	555
+---
+2018-02-19 18:57:08 Preprocessing summary
+Reads lost:	7204221 (9.02 %)
+Aberrant reads:	3012685 (3.00 %)
+Reads per sample:
+1t0	10887297
+1t1	9852989
+1t14	12918546
+2t0	16753012
+2t1	9290585
+2t14	13000641
+Demultiplexing failures:
+0/0:	47299
+0/39:	155530
+0/40:	203815
+0/41:	142047
+0/42:	548993
+35/0:	578161
+35/40:	200817
+35/41:	179274
+36/0:	108064
+36/39:	88878
+36/41:	184739
+36/42:	142992
+37/0:	139178
+37/39:	98491
+37/40:	331822
+37/42:	321011
+38/0:	448697
+38/39:	106929
+38/41:	164799
+Spikes:
+1t0:
+  spike1:	30
+  spike2:	65
+  spike3:	92
+  spike4:	78
+  spike5:	128
+  spike6:	135
+  spike7:	184
+1t1:
+  spike1:	34
+  spike2:	72
+  spike3:	82
+  spike4:	142
+  spike5:	111
+  spike6:	317
+  spike7:	340
+1t14:
+  spike1:	48
+  spike2:	85
+  spike3:	186
+  spike4:	205
+  spike5:	232
+  spike6:	407
+  spike7:	451
+2t0:
+  spike1:	22
+  spike2:	54
+  spike3:	150
+  spike4:	78
+  spike5:	98
+  spike6:	151
+  spike7:	185
+2t1:
+  spike1:	43
+  spike2:	71
+  spike3:	126
+  spike4:	99
+  spike5:	121
+  spike6:	251
+  spike7:	322
+2t14:
+  spike1:	79
+  spike2:	122
+  spike3:	197
+  spike4:	176
+  spike5:	208
+  spike6:	413
+  spike7:	440
+---
+2018-02-19 20:55:15 Preprocessing summary
+Reads lost:	8888872 (8.44 %)
+Aberrant reads:	3689065 (3.00 %)
+Reads per sample:
+1t0	17113506
+1t1	11858273
+1t14	17973041
+2t0	19212991
+2t1	10692855
+2t14	19525004
+Demultiplexing failures:
+0/0:	51989
+0/39:	216033
+0/40:	232961
+0/41:	131206
+0/42:	649030
+35/0:	873543
+35/40:	254431
+35/41:	243438
+36/0:	150976
+36/39:	131115
+36/41:	221047
+36/42:	159929
+37/0:	197192
+37/39:	147241
+37/40:	390281
+37/42:	330251
+38/0:	515120
+38/39:	140203
+38/41:	163821
+Spikes:
+1t0:
+  spike1:	43
+  spike2:	99
+  spike3:	154
+  spike4:	138
+  spike5:	210
+  spike6:	198
+  spike7:	264
+1t1:
+  spike1:	40
+  spike2:	59
+  spike3:	123
+  spike4:	161
+  spike5:	119
+  spike6:	323
+  spike7:	393
+1t14:
+  spike1:	73
+  spike2:	135
+  spike3:	286
+  spike4:	241
+  spike5:	320
+  spike6:	630
+  spike7:	605
+2t0:
+  spike1:	30
+  spike2:	63
+  spike3:	208
+  spike4:	101
+  spike5:	150
+  spike6:	163
+  spike7:	213
+2t1:
+  spike1:	38
+  spike2:	65
+  spike3:	158
+  spike4:	117
+  spike5:	127
+  spike6:	272
+  spike7:	340
+2t14:
+  spike1:	99
+  spike2:	213
+  spike3:	309
+  spike4:	268
+  spike5:	312
+  spike6:	589
+  spike7:	684
+---

@@ -1,0 +1,48 @@
+2016-09-21 11:34:22 Error summary
+Percentage reads lost: 17.21
+Aberrant reads:	5219688
+Demultiplexing failures:
+primers 0/22:	305568
+primers 21/20:	280295
+primers 0/0:	211512
+primers 0/21:	524013
+primers 20/22:	771266
+primers 21/0:	431588
+primers 22/20:	308604
+primers 20/21:	734453
+primers 23/22:	648355
+primers 0/20:	486647
+primers 20/0:	1864707
+primers 23/20:	552900
+primers 21/22:	344676
+primers 23/0:	1227569
+primers 0/23:	822098
+primers 22/23:	453886
+primers 21/23:	259740
+primers 22/0:	926160
+primers 22/21:	764917
+---
+2016-09-21 12:44:43 Error summary
+Percentage reads lost: 20.03
+Aberrant reads:	4590851
+Demultiplexing failures:
+primers 0/22:	226302
+primers 21/20:	300791
+primers 0/0:	218325
+primers 0/21:	422754
+primers 20/22:	725634
+primers 21/0:	396516
+primers 0/20:	435110
+primers 21/22:	268381
+primers 23/22:	719527
+primers 21/23:	336810
+primers 20/0:	1832908
+primers 23/20:	732797
+primers 20/21:	882998
+primers 22/20:	257302
+primers 23/0:	1231248
+primers 22/21:	662316
+primers 22/23:	480218
+primers 22/0:	686056
+primers 0/23:	744239
+---
