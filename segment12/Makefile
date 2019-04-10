@@ -2,12 +2,16 @@ all: S12_rep1_1.txt S12_rep1_2.txt S12_rep2_1.txt S12_rep2_2.txt
 
 rep1:
 	../preprocess.py S12specs.txt \
-		/data/GF12_1_13748_AAGGGA_read1.fastq.gz \
-		/data/GF12_1_13748_AAGGGA_read2.fastq.gz rep1
+		/data/S12_rep1_read1.fastq.gz \
+		/data/S12_rep1_read2.fastq.gz rep1
+#		/data/GF12_1_13748_AAGGGA_read1.fastq.gz \
+#		/data/GF12_1_13748_AAGGGA_read2.fastq.gz rep1
 rep2:
 	../preprocess.py S12specs.txt \
-		/data/GF12_2_13749_GGACCC_read1.fastq.gz \
-		/data/GF12_2_13749_GGACCC_read2.fastq.gz rep2
+		/data/S12_rep2_read1.fastq.gz \
+		/data/S12_rep2_read2.fastq.gz rep2
+#		/data/GF12_2_13749_GGACCC_read1.fastq.gz \
+#		/data/GF12_2_13749_GGACCC_read2.fastq.gz rep2
 
 S12_rep1_1.txt S12_rep1_2.txt: rep1
 	../do_starcode.sh rep1

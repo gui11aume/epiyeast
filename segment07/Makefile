@@ -4,10 +4,15 @@ rep1:
 	../preprocess.py S7specs.txt \
 		/data/GF7_1_15019_CCTTCA_read1.fastq.gz \
 		/data/GF7_1_15019_CCTTCA_read2.fastq.gz rep1
+#		/data/S07_rep1_read1.fastq.gz \
+#		/data/S07_rep1_read2.fastq.gz rep1
+
 rep2:
 	../preprocess.py S7specs.txt \
-		/data/GF7_2_15020_TTCAGC_read1.fastq.gz \
-		/data/GF7_2_15020_TTCAGC_read2.fastq.gz rep2
+		/data/S07_rep2_read1.fastq.gz \
+		/data/S07_rep2_read2.fastq.gz rep2
+#		/data/GF7_2_15020_TTCAGC_read1.fastq.gz \
+#		/data/GF7_2_15020_TTCAGC_read2.fastq.gz rep2
 
 S7_rep1_1.txt S7_rep1_2.txt: rep1
 	../do_starcode.sh rep1

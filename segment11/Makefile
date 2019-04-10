@@ -2,12 +2,16 @@ all: S11_rep1_1.txt S11_rep1_2.txt S11_rep2_1.txt S11_rep2_2.txt
 
 rep1:
 	../preprocess.py S11specs.txt \
-		/data/GF11_1_15182_CCTCGG_read1.fastq.gz \
-		/data/GF11_1_15182_CCTCGG_read2.fastq.gz rep1
+		/data/S11_rep1_read1.fastq.gz \
+		/data/S11_rep1_read2.fastq.gz rep1
+#		/data/GF11_1_15182_CCTCGG_read1.fastq.gz \
+#		/data/GF11_1_15182_CCTCGG_read2.fastq.gz rep1
 rep2:
 	../preprocess.py S11specs.txt \
-		/data/GF11_2_15183_TTCGCT_read1.fastq.gz \
-		/data/GF11_2_15183_TTCGCT_read2.fastq.gz rep2
+		/data/S11_rep2_read1.fastq.gz \
+		/data/S11_rep2_read2.fastq.gz rep2
+#		/data/GF11_2_15183_TTCGCT_read1.fastq.gz \
+#		/data/GF11_2_15183_TTCGCT_read2.fastq.gz rep2
 
 S11_rep1_1.txt S11_rep1_2.txt: rep1
 	../do_starcode.sh rep1

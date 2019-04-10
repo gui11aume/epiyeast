@@ -72,6 +72,10 @@ class LaneInfo:
       # Initialize the number of counts for the spikes.
       self.spdict = defaultdict(lambda: defaultdict(int))
 
+      # Sequences errors.
+      self.nttot = 0
+      self.nterr = 0
+
    def write_to_file(self, f):
       '''Write a log file.'''
 
@@ -104,6 +108,11 @@ class LaneInfo:
             f.write('%s:\n' % smpl)
             for sp,cnt in D.items():
                f.write('  %s:\t%d\n' % (sp,cnt))
+
+      # Sequencing error rate.
+      f.write('Sequencing errors:\n')
+      f.write('Total:\t%d\n' % self.nttot)
+      f.write('Mismatches:\t%d\n' % self.nterr)
 
       # End of report.
       f.write('---\n')
@@ -171,8 +180,8 @@ class MultiplexSpecifications:
 
    @classmethod
    def parse(cls, fname):
-      '''Factory that creates an object from a specifications file.
-      The file should be tab-separated and formatted as shown below.
+      '''Factory creating an object from a specifications file. The
+      file should be tab-separated and formatted as shown below.
 
       AGGTTTGGATCAGGATTTGCGCCTTTGGAT
       fwd	 TTGCTCTCGGTCAAGCTTTTAAA
@@ -312,7 +321,7 @@ class PairedEndRead:
          raise NoSample
 
 
-   def merge(self, specs, trim=True):
+   def merge(self, specs, info, trim=True):
       '''Merge the two reads (same as FLASH).'''
 
       # Never try to merge reads that were not oriented first.
@@ -331,21 +340,80 @@ class PairedEndRead:
       self.anchor2 = m.matchlist[0]
       shift = self.anchor1[0] - self.anchor2[0]
       if self.anchor1[1] - self.anchor2[1] != shift:
+         # The beginning and the end of the constant regions
+         # must be at the same position (ruling out the presence
+         # of an indel in a read and not in the other.
          raise BadRead('no conensus found')
 
       revqual2 = self.qual2[::-1]
 
       # Initialize consensus. We will need to update the string
       # in place so we need a 'bytearray', which is mutable.
+      # The left part (if any) is initialized with read1, the
+      # right part with read2. There are two situations that look
+      # as shown below.
+      #
+      # Case 1: overlap is in 5' of the reads. Consensus must be
+      # the union of the sequences.
+      #
+      #         ------------------->
+      #                  <---------------------
+      #         | read1  |       read2        |
+      #
+      # Case 2: overlap is in 3' of the reads. Consensus must be
+      # the intersection of the sequences because the overhangs
+      # are the sequencing adapters.
+      #
+      #                  ------------------->
+      #         <---------------------
+      #                  |   read2   |
+
+      '''
+      def there_is_a_low_quality_nucleotide(qu):
+         for nt in qu:
+            if nt-33 < 20: return True
+         return False
+
+      def there_is_a_low_quality_nucleotide_in_variable_regions(qu):
+         #   [ oligo [ variable 1 [ constant [ variable 2 [ oligo ]
+         #   ^       ^            ^          ^            ^
+         #   0       L       anchor1[0]  anchor1[1]      -R
+         if not hasattr(self, 'L') or not hasattr(self, 'R'):
+            exit()
+         for nt in qu[self.L:self.anchor1[0]]:
+            if nt-33 < 20: return True
+         for nt in qu[self.anchor1[1]:-self.R]:
+            if nt-33 < 20: return True
+         return False
+      '''
+
+
       def pos(x): return  x if x > 0 else 0
       def neg(x): return -x if x < 0 else 0
+
+      nttot = nterr = 0
       cs = bytearray(self.read1[:pos(shift)] + revread2[neg(shift):])
+      qu = bytearray(self.qual1[:pos(shift)] + revqual2[neg(shift):])
       for i in range(pos(shift), min(len(self.read1), len(cs))):
-         if self.read1[i] != cs[i] and self.qual1[i] > revqual2[i-shift]:
-            cs[i] = self.read1[i]
+         # Record the disagreement in order compute the error
+         # rate of the batch.
+         there_is_no_N = self.read1[i] != 'N' and cs[i] != 78
+         nttot += 1 if there_is_no_N else 0
+         if ord(self.read1[i]) != cs[i]:
+            nterr += 1 if there_is_no_N else 0
+            if self.qual1[i] > revqual2[i-shift]:
+               cs[i] = self.read1[i]
+               qu[i] = self.qual1[i]
 
       if 'N' in cs:
          raise BadRead('no consensus found')
+
+      #if there_is_a_low_quality_nucleotide_in_variable_regions(qu):
+      #   raise BadRead('low quality nucleotide')
+
+      info.nttot += nttot
+      info.nterr += nterr
+
 
       # If the primers need to be trimmed, do it now.
       if trim and hasattr(self, 'L') and hasattr(self, 'R'):
@@ -370,7 +438,7 @@ def preprocess(specs, fname1, fname2):
          PEread.orient(specs)
          PEread.identify_sample(specs)
          PEread.check_if_spike(specs)
-         PEread.merge(specs)
+         PEread.merge(specs, info)
       except BadRead:
          info.naberrant += 1
          continue

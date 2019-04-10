@@ -1,3 +1,6 @@
+Each segment is in a different directory.
+To reproduce the data, enter a directory and type "make".
+
 Preprocessing steps.
 
 1. The reads are oriented using the constant part.

@@ -4,10 +4,14 @@ rep1:
 	../preprocess.py S6specs.txt \
 		/data/GF6_1_13544_CCTTCA_read1.fastq.gz \
 		/data/GF6_1_13544_CCTTCA_read2.fastq.gz rep1
+#		/data/S06_rep1_read1.fastq.gz \
+#		/data/S06_rep1_read2.fastq.gz rep1
 rep2:
 	../preprocess.py S6specs.txt \
 		/data/GF6_2_13545_TTCAGC_read1.fastq.gz \
 		/data/GF6_2_13545_TTCAGC_read2.fastq.gz rep2
+#		/data/S06_rep2_read1.fastq.gz \
+#		/data/S06_rep2_read2.fastq.gz rep2
 
 S6_rep1_1.txt S6_rep1_2.txt: rep1
 	../do_starcode.sh rep1

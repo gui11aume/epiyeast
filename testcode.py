@@ -56,6 +56,8 @@ class TestLaneInfo(unittest.TestCase):
          '1t1': { 'sp1': 100 },
          '1t2': { 'sp1': 100 },
       }
+      info.nttot = 10
+      info.nterr = 1
 
       buffer = StringIO()
       info.write_to_file(buffer)
@@ -72,6 +74,9 @@ class TestLaneInfo(unittest.TestCase):
            sp1:\t100
          1t2:
            sp1:\t100
+         Sequencing errors:
+         Total:\t10
+         Mismatches:\t1
          ---'''
 
       check = '\n'.join(buffer.getvalue().splitlines()[1:])
@@ -436,6 +441,7 @@ class TestPairedEndRead(unittest.TestCase):
       }
 
       ms = preprocess.MultiplexSpecifications(cst, fwd, rev, samples)
+      info = preprocess.LaneInfo()
 
       # Use 'PER' for short.
       PER = preprocess.PairedEndRead
@@ -449,27 +455,32 @@ class TestPairedEndRead(unittest.TestCase):
          'TGGCATCTTTAAAAGCTTANCC'
       qual1 = 'A3:ABGGGGGGGGGEGGGGGGGFGGGGGGGGGGGGGGCFGGFGGGFGGG' \
          'GGGGG1FGGGGGGGGG:BF1>EE8<EF1FC/CFBGEGGGGGFGGGGGEGGGGG>' \
-         'CGGGGGGGGGGGGB:EEGGGGG'
+         'CGGGGGGGGGGGGB:EEG#GGG'
       qual2 = 'ABBB@GGCCGGGGGFGGGGG<?E1?CFGGD/FFFGEGGGGEGGG1EEGG' \
          'G>GGGF?11:>CF/<<BEF0@F@DGGCG90<<FEFCF>GGGGGGGEF@FGGG0;' \
-         ';;;FDD9;FCDGGEGEEGD###'
+         ';;;FDD9;FCDGGEGEEGG###'
 
-      cs = 'GCTCTCGGTCAAGCTTTTAAAAAGGCCATAGGAAATGTCAAAGGTATAGCAA' \
+      cs = 'GCTCTCGGTTAAGCTTTTAAAAAGGCCATAGGAAATGTCAAAGGTATAGCAA' \
          'GGTTTGGATCAGGATTTGCGCCTTTGGATGAAGCACTTTCCAGATCAGTTGTTG' \
          'ACTTGTCGAACAGGCCGTACGCAGT'
 
       PEread = PER(read1, read2, qual1, qual2)
-      PEread.merge(ms, trim=False)
+      PEread.merge(ms, info, trim=False)
 
       self.assertEqual(PEread.cs, cs)
+      self.assertEqual(info.nttot, 118)
+      self.assertEqual(info.nterr, 20)
 
       # Swap the reads to check that there is no asymetry (they
       # will be oriented during the call).
 
       PEread = PER(read2, read1, qual2, qual1)
-      PEread.merge(ms, trim=False)
+      PEread.merge(ms, info, trim=False)
 
       self.assertEqual(PEread.cs, cs)
+      # Nucleotides are cumulative.
+      self.assertEqual(info.nttot, 236)
+      self.assertEqual(info.nterr, 40)
 
       # Now with trimming.
       cs = 'AAGGCCATAGGAAATGTCAAAGGTATAGCAAGGTTTGGATCAGGATTTGCGC' \
@@ -479,8 +490,10 @@ class TestPairedEndRead(unittest.TestCase):
       PEread.identify_sample(ms)
       self.assertEqual(PEread.sample, 'XXX')
 
-      PEread.merge(ms, trim=True)
+      PEread.merge(ms, info, trim=True)
       self.assertEqual(PEread.cs, cs)
+      self.assertEqual(info.nttot, 354)
+      self.assertEqual(info.nterr, 60)
 
 
       # A case modified by removing 13 nucleotides in each side.
@@ -500,12 +513,14 @@ class TestPairedEndRead(unittest.TestCase):
          'EGEEGD###'
 
       PEread = PER(read1, read2, qual1, qual2)
-      PEread.merge(ms, trim=False)
+      PEread.merge(ms, info, trim=False)
 
       cs = 'CTTTTAAAAAGGCCATAGGAAATGTCAAAGGTATAGCAAGGTTTGGATCAGG' \
          'ATTTGCGCCTTTGGATGAAGCACTTTCCAGATCAGTTGTTGACTTGTCGAACA'
 
       self.assertEqual(PEread.cs, cs)
+      self.assertEqual(info.nttot, 459)
+      self.assertEqual(info.nterr, 79)
 
 
 
@@ -524,6 +539,8 @@ class TestPairedEndRead(unittest.TestCase):
       }
 
       ms = preprocess.MultiplexSpecifications(cst, fwd, rev, samples)
+      info = preprocess.LaneInfo()
+
       # Use 'PER' for short.
       PER = preprocess.PairedEndRead
 
@@ -543,7 +560,7 @@ class TestPairedEndRead(unittest.TestCase):
 
       PEread = PER(read1, read2, qual1, qual2)
       with self.assertRaises(preprocess.BadRead):
-         PEread.merge(ms)
+         PEread.merge(ms, info)
 
       # The sequences have an unresolved N.
       read1 = 'GCTCTCNGTCAAGCTTTTAAAAAGGCCATAGGGAATGTCAAAGGTATAG' \
@@ -561,7 +578,7 @@ class TestPairedEndRead(unittest.TestCase):
 
       PEread = PER(read1, read2, qual1, qual2)
       with self.assertRaises(preprocess.BadRead):
-         PEread.merge(ms)
+         PEread.merge(ms, info)
 
 if __name__ == '__main__':
    unittest.main()
