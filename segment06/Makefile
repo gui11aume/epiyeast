@@ -1,17 +1,30 @@
 all: S6_rep1_1.txt S6_rep1_2.txt S6_rep2_1.txt S6_rep2_2.txt
 
-rep1:
+SRR5680238_1.fastq.gz:
+	wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR568/008/SRR5680238/SRR5680238_1.fastq.gz
+	echo "2aba3affdafa4ad43a804b1261717c58  SRR5680238_1.fastq.gz" | md5sum -c
+
+SRR5680238_2.fastq.gz:
+	wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR568/008/SRR5680238/SRR5680238_2.fastq.gz
+	echo "1e7286dc5e287155ab4bedb3d1e2634d  SRR5680238_2.fastq.gz" | md5sum -c
+
+SRR5680239_1.fastq.gz:
+	wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR568/009/SRR5680239/SRR5680239_1.fastq.gz
+	echo "e590f9dabf3f4cc49f317fec7c3bb548  SRR5680239_1.fastq.gz" | md5sum -c
+
+SRR5680239_2.fastq.gz:
+	wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR568/009/SRR5680239/SRR5680239_2.fastq.gz
+	echo "321113e967948d43a4b17c699497f723  SRR5680239_2.fastq.gz" | md5sum -c
+
+rep1: SRR5680238_1.fastq.gz SRR5680238_2.fastq.gz
 	../preprocess.py S6specs.txt \
-		/data/GF6_1_13544_CCTTCA_read1.fastq.gz \
-		/data/GF6_1_13544_CCTTCA_read2.fastq.gz rep1
-#		/data/S06_rep1_read1.fastq.gz \
-#		/data/S06_rep1_read2.fastq.gz rep1
-rep2:
+		SRR5680238_1.fastq.gz \
+		SRR5680238_2.fastq.gz rep1
+
+rep2: SRR5680239_1.fastq.gz SRR5680239_2.fastq.gz
 	../preprocess.py S6specs.txt \
-		/data/GF6_2_13545_TTCAGC_read1.fastq.gz \
-		/data/GF6_2_13545_TTCAGC_read2.fastq.gz rep2
-#		/data/S06_rep2_read1.fastq.gz \
-#		/data/S06_rep2_read2.fastq.gz rep2
+		SRR5680239_1.fastq.gz \
+		SRR5680239_2.fastq.gz rep2
 
 S6_rep1_1.txt S6_rep1_2.txt: rep1
 	../do_starcode.sh rep1
